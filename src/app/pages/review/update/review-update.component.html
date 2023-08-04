@@ -1,0 +1,74 @@
+<div class="container">
+  <h3>Review</h3>
+  <div class="row" *ngFor="let a of answers">
+    <!-- Question 1 -->
+    <div class="col-md-2">
+      <div class="mb-3">
+        <label for="question1" class="form-label">Question</label>
+      </div>
+    </div>
+
+    <div class="col-md-10">
+      <div class="mb-3">
+        <label for="question1" class="form-label">{{a.question}}</label>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="mb-3">
+        <label for="answer2" class="form-label">Answer</label>
+      </div>
+    </div>
+
+    <div class="col-md-10">
+      <div class="mb-3">
+        <p>{{a.essayAnswer}}</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <h4>Scoring</h4>
+    <form [formGroup]="updateReviewDto" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-1">
+          <label for="status" class="form-label">Status<span class="text-danger">*</span></label>
+        </div>
+        <div class="col-md-3">
+          <div class="mb-3 ">
+            <select formControlName="reviewStatusId" class="form-select form-select-sm" id="status"
+              aria-label=".form-select-sm example" required>
+              <option *ngFor="let s of reviewStatus" selected [value]="s.id">{{s.statusName}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-1">
+          <div class="mb-3">
+            <label for="grade" class="form-label">Grade<span class="text-danger">*</span></label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <input type="number" formControlName="grade" step="anyone" class="form-control" id="grade" required>
+        </div>
+
+        <div class="col-md-1">
+          <div class="mb-3">
+            <label for="notes" class="form-label">Notes<span class="text-danger">*</span></label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <textarea class="form-control" formControlName="notes" id="notes" rows="3" required></textarea>
+        </div>
+
+      </div>
+      <div class="row ">
+        <div class="col-sm-6 gy-3">
+          <button type="submit" class="btn btn-primary" style="text-align: justify;margin-right: 1rem;">Submit</button>
+          <a class="btn btn-secondary" routerLink="/reviews">Cancel</a>
+        </div>
+      </div>
+    </form>
+  </div>

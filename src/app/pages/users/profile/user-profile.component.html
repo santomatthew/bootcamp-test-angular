@@ -1,0 +1,98 @@
+<pre>{{updateProfileDto.value | json}}</pre>
+<div class="grid justify-content-center ">
+  <div class=" col-12 md:col-6">
+    <div class="card ">
+      <p-card header="Update User">
+        <form [formGroup]="updateProfileDto">
+          <div class="grid align-items-center gy-md-3">
+            <div class="col-12 md:col-3">
+
+              <label for="email" class="form-label">Email</label>
+
+            </div>
+
+            <div class="col-12 md:col-9">
+
+              <input id="disabled-input" type="text" pInputText [disabled]="true" placeholder="{{profile.email}}" />
+
+            </div>
+
+            <div class="col-12 md:col-3">
+
+              <label for="roleFormControl" class="form-label">Role</label>
+
+            </div>
+
+            <div class="col-12 md:col-9">
+
+              <p-dropdown [placeholder]="profile.roleName" [disabled]=" true"></p-dropdown>
+
+
+            </div>
+
+            <div class="col-12 md:col-3">
+
+              <label for="fullname" class="form-label">Full Name<span class="text-danger">*</span></label>
+
+            </div>
+
+            <div class="col-12 md:col-9">
+
+              <input type="text" pInputText formControlName="fullName" />
+
+            </div>
+
+            <div class="col-12 md:col-3">
+
+              <label for="address" class="form-label">Address<span class="text-danger">*</span></label>
+
+            </div>
+            <div class="col-12 md:col-9">
+
+              <textarea rows="2" cols="30" pInputTextarea formControlName="address"></textarea>
+
+            </div>
+
+            <div class="col-12 md:col-3">
+
+              <label for="phone" class="form-label">Phone<span class="text-danger">*</span></label>
+
+            </div>
+
+            <div class="col-12 md:col-9">
+
+              <input type="text" pInputText formControlName="phone" />
+
+            </div>
+
+            <div class="col-12 md:col-3">
+
+              <label for="photo" class="form-label">Photo<span class="text-danger">*</span></label>
+
+            </div>
+
+            <div class="col-12 md:col-9">
+              <p-fileUpload mode="basic" chooseLabel="Choose" #file accept="image/*"
+                (onSelect)="fileUpload($event,file)">
+              </p-fileUpload>
+
+            </div>
+
+            <div class="grid ">
+              <div class="col-12 md:col-6 ">
+                <app-button typeBtn=" submit" label="Update">
+                </app-button>
+              </div>
+              <div class="col-12 md:col-6 ">
+                <app-button typeBtn="button" label="Back" styleBtn="p-button-secondary" routerLink="/dashboard">
+                </app-button>
+              </div>
+            </div>
+
+
+          </div>
+        </form>
+      </p-card>
+    </div>
+  </div>
+</div>

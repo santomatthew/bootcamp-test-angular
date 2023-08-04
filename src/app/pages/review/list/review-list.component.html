@@ -1,0 +1,79 @@
+<div class="container">
+  <h3>Review List</h3>
+  <div class="row">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Progress Status</th>
+            <th scope="col">Review Status</th>
+            <th scope="col">Option</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of reviews;let i=index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{r.candidateName}}</td>
+            <td>{{r.progressStatusName}}</td>
+            <td>{{r.reviewStatusName}}</td>
+            <td>
+              <button type="button" (click)="getScore(r.reviewId)" class="btn btn-info" data-bs-toggle="modal"
+                data-bs-target="#exampleModal" style="margin-right: 1rem;">Score</button>
+              <a type="button" class="btn btn-primary" (click)="review(r.candidateId)">Review</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="grid justify-content-center">
+  <div class="col-12 md:col-10 ">
+    <div class="card">
+      <p-table [value]="reviews" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Num</th>
+            <th>Name</th>
+            <th>Progress Status</th>
+            <th>Review Status</th>
+            <th>Options</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-reviews let-i="rowIndex">
+          <tr>
+            <td>{{i+1}}</td>
+            <td>{{reviews.candidateName}}</td>
+            <td>{{reviews.progressStatusName}}</td>
+            <td>{{reviews.reviewStatusName}}</td>
+            <td>
+              <app-button styleBtn="p-button-secondary" (click)="getScore(reviews.reviewId)" icon="pi pi-external-link"
+                label="Show Score">
+              </app-button>
+              <p-dialog header="Score {{reviews.candidateName}}" [(visible)]="visible" [modal]="true"
+                [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+
+                <div class="grid" *ngFor="let d of reviewDetails;let idx = index">
+                  <div class="col-12 md:col-3">
+                    Score {{idx+1}} : {{d.grade}}
+                  </div>
+                  <div class="col-12 md:col-3">
+                    Notes : {{d.notes}}
+                  </div>
+                </div>
+
+              </p-dialog>
+              <!-- <a type="button" class="btn btn-primary" (click)="review(r.candidateId)">Review</a> -->
+
+              <app-button (click)="review(reviews.candidateId)" label="Review" typeBtn="button"></app-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+</div>

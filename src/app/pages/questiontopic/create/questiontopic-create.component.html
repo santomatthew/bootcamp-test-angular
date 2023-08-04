@@ -1,0 +1,46 @@
+<pre>{{topicInsertReqDto.value |json}}</pre>
+
+<div class="grid justify-content-center">
+  <div class="col-12 md:col-6">
+
+    <div class="card flex justify-content-center">
+      <p-card header="Create New Question Topic">
+        <form [formGroup]="topicInsertReqDto" (ngSubmit)="onSubmit()">
+          <div class="grid align-items-center">
+            <div class="col-12 md:col-3">
+              <div class="mb-3">
+                <label for="package-code" class="form-label">Topic Code<span class="text-danger">*</span></label>
+              </div>
+            </div>
+
+            <div class="col-12 md:col-9">
+              <div class="mb-3 ">
+
+                <input type="text" pInputText formControlName="topicCode" required />
+                <!-- <input type="text" class="form-control" id="package-code" formControlName="packageCode" > -->
+              </div>
+            </div>
+            <div class="col-12 md:col-3">
+              <div class="mb-3">
+                <label for="package-name" class="form-label">Topic Name<span class="text-danger">*</span></label>
+              </div>
+            </div>
+
+            <div class="col-12 md:col-9">
+              <div class="mb-3 ">
+                <input type="text" pInputText formControlName="questionTopic" required />
+              </div>
+            </div>
+
+            <div class="col-12 md:col-6">
+              <app-button type="submit" label="Submit"></app-button>
+              <!-- <button type="submit" class="btn btn-primary" style="margin-right: 1rem;">Submit</button> -->
+              <app-button label="Cancel" styleBtn="p-button-secondary" routerLink="/questiontopics"></app-button>
+              <!-- <a class="btn btn-secondary" >Cancel</a> -->
+            </div>
+          </div>
+        </form>
+      </p-card>
+    </div>
+  </div>
+</div>

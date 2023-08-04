@@ -1,0 +1,33 @@
+<div class="grid justify-content-center">
+  <div class=" col-12 md:col-10">
+    <div class="card flex justify-content-center">
+      <p-card header="Question Packages List">
+        <p class="m-0">
+          <p-table [value]="packages" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+              <tr>
+                <!-- <th>Num</th> -->
+                <th>Num</th>
+                <th>Package Code</th>
+                <th>Package Name</th>
+                <!-- <th>Options</th> -->
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-packages let-i="rowIndex">
+              <tr>
+                <td>{{i+1}}</td>
+                <td>{{packages.packageName}}</td>
+                <td>{{packages.packageCode}}</td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="footer">
+              <p-button type="submit" label="Create New Package" routerLink="/questionpackages/create"></p-button>
+            </ng-template>
+          </p-table>
+        </p>
+      </p-card>
+    </div>
+
+
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div
+  class="container-md flex justify-content-center align-items-center position-absolute top-50 start-50 translate-middle">
+
+  <div class="grid">
+    <div class="col-12 md:col-12">
+
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="col">
+      <p-card header="Login Bootcamp Test" [style]="{ width: '360px' }">
+        <form [formGroup]="userLoginReqDto" (ngSubmit)="onLogin()">
+          <div class="card">
+            <div class="card-header">
+              <h3 style="text-align: center;"></h3>
+            </div>
+            <div class="card-body">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <!-- <input type="email" class="form-control" id="exampleInputEmail1" formControlName="userEmail" required> -->
+                <input type="text" pInputText formControlName="userEmail" />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" formControlName="userPassword"
+                  required>
+              </div>
+
+            </div>
+          </div>
+          <app-button typeBtn="submit" [loading]="loading" label="Login"></app-button>
+          <!-- <button *ngIf="!loading" type="submit" [disabled]="userLoginReqDto.invalid" pButton pRipple
+            label="Login" class="p-button-primary p-button-sm"></button>
+            <button *ngIf="loading" type="submit" pButton pRipple label="Loading..."
+              class="p-button-primary p-button-sm">
+            </button> -->
+        </form>
+      </p-card>
+    </div>
+  </div>
+</div>

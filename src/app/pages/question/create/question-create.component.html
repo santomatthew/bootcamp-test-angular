@@ -1,0 +1,272 @@
+<!-- <div class="container">
+  <h3>Create New Question</h3>
+  <form [formGroup]="questionsInsertReqDto" (ngSubmit)="onSubmit()">
+    <div class="col-md-9">
+      <div class="mb-3 ">
+        <div class="col-md-3">
+          <div class="mb-3">
+            <button type="button" (click)="onAdd()" class="btn btn-primary">Add Question</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin: 1rem;" *ngFor="let f of forms.controls; let i = index" formArrayName="data">
+      <div class="card">
+        <div class="card-body">
+          <div class="grid align-items-center gy-md-3">
+            <div class="col-md-3">
+              <div class="mb-3">
+                <label for="question-type" class="form-label">Question Type <span class="text-danger">*</span></label>
+              </div>
+            </div>
+
+            <div class="col-md-9">
+              <div class="mb-3 ">
+                <div *ngFor="let t of types" class="form-check">
+                  <input class="form-check-input" type="radio" formControlName="questionTypeId" [value]="t.id"
+                    id="flexRadioDefault1">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    {{t.questionType}}
+                  </label>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="mb-3">
+                <label for="list-package" class="form-label">Package<span class="text-danger">*</span></label>
+              </div>
+            </div>
+
+            <div class="col-md-9">
+              <div class="mb-3 ">
+                <select class="form-select form-select-sm" id="list-package" aria-label=".form-select-sm example"
+                  formControlName="questionPackageId" required>
+                  <option *ngFor="let p of packages" [value]='p.id'>
+                    {{p.packageName}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="mb-3">
+                <label for="list-topic" class="form-label">Topic<span class="text-danger">*</span></label>
+              </div>
+            </div>
+
+            <div class="col-md-9">
+              <div class="mb-3 ">
+                <select class="form-select form-select-sm" id="list-topic" aria-label=".form-select-sm example"
+                  formControlName="questionTopicId" required>
+                  <option *ngFor="let t of topics" [value]=t.id>{{t.questionTopic}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="mb-3">
+                <label for="question" class="form-label">Question<span class="text-danger">*</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="mb-3 ">
+                <textarea formControlName="question" class="form-control" id="question" rows="2" required></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="grid gy-md-3">
+            <div class="col-md-3">
+              <button type="button" (click)="onAddOption(i)" class="btn btn-primary">Add Options</button>
+            </div>
+            <div class="grid align-items-center">
+              <div formArrayName="questionOptions" *ngFor="let o of questionOption(i).controls; let j = index">
+                <div [formGroupName]="j">
+                  <div class="col-md-3 gy-md-3">
+                    <input type="text" class="form-control" formControlName="optLabel" id="option1">
+                  </div>
+                  <div class="col-md-2 gy-md-3">
+                    <select class="form-select" formControlName="correct" aria-label="Default select example">
+                      <option value="true">True</option>
+                      <option value="false">False</option>
+                    </select>
+                  </div>
+                  <div class="col-md-2 gy-md-3">
+                    <button type="button" (click)="removeOption(i,j)" class="btn btn-danger">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-end">
+          <div class="grid ">
+            <div class="col-md-12 gy-2">
+              <div class="mb-3 ">
+                <button type="button" (click)="remove(i)" class=" btn btn-danger">Delete Question</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="grid">
+      <div class="col-sm-6 align-items-center gy-md-3">
+        <button type="submit" class="btn btn-primary" style="margin-right: 1rem;">Submit</button>
+        <a type="button" class="btn btn-secondary" routerLink="/questions">Cancel</a>
+      </div>
+    </div>
+  </form>
+
+</div> -->
+
+<pre>{{questionsInsertReqDto.value | json}}</pre>
+<div class="grid justify-content-center">
+  <div class="col-12 md:col-10">
+
+    <div class="card flex justify-content-center">
+      <p-card header="Create New Question">
+        <form [formGroup]="questionsInsertReqDto" (ngSubmit)="onSubmit()">
+          <div class="col-12 md:col-9">
+            <div class="mb-3 ">
+              <div class="col-12 md:col-3">
+                <div class="mb-3">
+                  <app-button typeBtn="button" (click)="onAdd()" label="Add Question">
+                  </app-button>
+                  <!-- <button type="button" (click)="onAdd()" class="btn btn-primary">Add Question</button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngFor="let f of forms.controls; let i = index" formArrayName="data">
+            <div class="card" [formGroupName]="i">
+              <div class="grid align-items-center gy-md-3">
+                <div class="col-12 md:col-3">
+                  <div class="mb-3">
+                    <label for="question-type" class="form-label">Question Type <span
+                        class="text-danger">*</span></label>
+                  </div>
+                </div>
+
+                <div class="col-12 md:col-9">
+                  <div class="mb-3">
+                    <div *ngFor="let t of types" class="field-checkbox">
+                      <p-radioButton id="t.id" formControlName="questionTypeId" [inputId]="t.questionType"
+                        [value]="t.id">
+                      </p-radioButton>
+                      <label [for]="t.id" class="ml-2">{{ t.questionType }}</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 md:col-3">
+                  <div class="mb-3">
+                    <label for="list-package" class="form-label">Package<span class="text-danger">*</span></label>
+                  </div>
+                </div>
+
+                <div class="col-12 md:col-9">
+                  <div class="mb-3 ">
+                    <p-dropdown formControlName="questionPackageId" [options]="packages" optionValue="id"
+                      optionLabel="packageName" placeholder="Select Package"></p-dropdown>
+                  </div>
+                </div>
+
+                <div class="col-12 md:col-3">
+                  <div class="mb-3">
+                    <label for="list-topic" class="form-label">Topic<span class="text-danger">*</span></label>
+                  </div>
+                </div>
+
+                <div class="col-12 md:col-9">
+                  <div class="mb-3 ">
+                    <!-- <select class="form-select form-select-sm" id="list-topic" formControlName="questionTopicId"
+                      aria-label=".form-select-sm example" required>
+                      <option *ngFor="let t of topics" [value]=t.id>{{t.questionTopic}}</option>
+                    </select> -->
+                    <p-dropdown formControlName="questionTopicId" [options]="topics" optionValue="id"
+                      optionLabel="questionTopic" placeholder="Select Topic"></p-dropdown>
+                  </div>
+                </div>
+
+                <div class="col-12 md:col-3">
+                  <div class="mb-3">
+                    <label for="question" class="form-label">Question<span class="text-danger">*</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-12 md:col-6">
+                  <div class="mb-3 ">
+                    <!-- <textarea formControlName="question" class="form-control" id="question" rows="2"
+                      required></textarea> -->
+                    <textarea rows="2" cols="30" pInputTextarea formControlName="question"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid gy-md-3">
+                <div class="col-12 md:col-12">
+                  <app-button typeBtn="button" (click)="onAddOption(i)" label="Add Options">
+                  </app-button>
+                </div>
+
+
+              </div>
+              <div class="grid ">
+                <div formArrayName="questionOptions" *ngFor="let o of questionOption(i).controls; let j = index">
+                  <div [formGroupName]="j">
+                    <div class="col-12 md:col-3 gy-md-3">
+                      <!-- <input type="text" class="form-control" formControlName="optLabel" id="option1"> -->
+                      <input type="text" pInputText formControlName="optLabel" />
+                    </div>
+                    <div class="col-12 md:col-2 gy-md-3">
+                      <!-- <select class="form-select" formControlName="correct" aria-label="Default select example">
+                        <option value="true">True</option>
+                        <option value="false">False</option>
+                      </select> -->
+                      <p-dropdown formControlName="correct" [options]="options" optionLabel="name" optionValue="value"
+                        placeholder="Select option"></p-dropdown>
+                    </div>
+                    <div class="col-12 md:col-2 ">
+                      <app-button (click)="removeOption(i,j)" label="Delete Option" styleBtn="p-button-danger">
+                      </app-button>
+                      <!-- <button type="button" (click)="removeOption(i,j)" class="btn btn-danger">Delete</button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid">
+                <div class="col-12 md:col-12 gy-2">
+                  <div class="mb-3 ">
+                    <!-- <app-button (click)="remove(i)" label="Remove" typeBtn="button" styleBtn="app-button-danger">
+                      </app-button> -->
+                    <app-button (click)="remove(i)" label="Remove" styleBtn="p-button-danger"></app-button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="col-12 md:col-6">
+              <app-button type="submit" label="Submit">
+              </app-button>
+              <!-- <app-button label="Cancel" styleBtn="app-button-secondary" routerLink="/questions"></app-button> -->
+            </div>
+            <div class="col-12 md:col-6">
+              <app-button label="Cancel" styleBtn="p-button-secondary" routerLink="/questions"></app-button>
+            </div>
+          </div>
+        </form>
+      </p-card>
+    </div>
+  </div>
+</div>

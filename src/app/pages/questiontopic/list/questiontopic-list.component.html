@@ -1,0 +1,29 @@
+<div class="grid justify-content-center">
+  <div class=" col-12 md:col-10">
+    <div class="card flex justify-content-center">
+      <p-card header="Question Topic List">
+        <p class="m-0">
+          <p-table [value]="topics" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Num</th>
+                <th>Topic Code</th>
+                <th>Topic Name</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-topics let-i="rowIndex">
+              <tr>
+                <td>{{i+1}}</td>
+                <td>{{topics.topicCode}}</td>
+                <td>{{topics.questionTopic}}</td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="footer">
+              <app-button typeBtn="button" label="Create New Topic" routerLink="/questiontopics/create"></app-button>
+            </ng-template>
+          </p-table>
+        </p>
+      </p-card>
+    </div>
+  </div>
+</div>

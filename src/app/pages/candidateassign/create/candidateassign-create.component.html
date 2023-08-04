@@ -1,0 +1,179 @@
+  <pre>{{candidateAssignsDto.value |json}}</pre>
+  <div class="container">
+    <h3>Candidate Assign</h3>
+
+  </div>
+
+  <div class="grid justify-content-center">
+    <div class="col-12 md:col-6">
+      <div class="card flex justify-content-center ">
+        <p-card header=" Candidate Assign">
+          <form [formGroup]="candidateAssignsDto" (ngSubmit)="onSubmit()">
+            <!-- [formGroup]="candidateAssignReqDto " " = -->
+
+            <div class="grid align-items-center gy-md-3">
+              <div class="col-12 md:col-3">
+                <div class="mb-3">
+                  <label for="list-candidate" class="form-label">Candidate<span class="text-danger">*</span></label>
+                </div>
+              </div>
+
+              <div class="col-12 md:col-9">
+                <div class="mb-3 ">
+                  <p-dropdown [options]="candidates" formControlName="candidateId" optionValue="id"
+                    optionLabel="userName" placeholder="Select Candidate">
+                  </p-dropdown>
+                </div>
+              </div>
+
+              <div class="col-12 md:col-3">
+                <div class="mb-3">
+                  <label for="list-reviewer" class="form-label">Reviewer<span class="text-danger">*</span></label>
+                </div>
+              </div>
+
+              <div class="col-12 md:col-9">
+                <div class="mb-3 ">
+                  <p-dropdown [options]="reviewers" formControlName="reviewerId" optionValue="id" optionLabel="userName"
+                    placeholder="Select Reviewer">
+                  </p-dropdown>
+                </div>
+              </div>
+
+              <div *ngFor="let ca of candidateAssigns.controls; let x=index" formArrayName="candidateAssigns">
+                <div [formGroupName]="x">
+                  <div class="grid">
+                    <div class="col-12 md:col-3">
+                      <div class="mb-3">
+                        <label for="start-date" class="form-label">Start Date<span class="text-danger">*</span></label>
+                      </div>
+                    </div>
+
+                    <div class="col-12 md:col-9">
+                      <div class="mb-3">
+                        <p-calendar [showTime]="true" formControlName="startTime" [showSeconds]="true"></p-calendar>
+                        <!-- <input type="datetime-local" class="form-control" id="start-date" formControlName="startTime"
+                          required> -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="grid">
+                    <div class="col-12 md:col-3">
+                      <div class="mb-3">
+                        <label for="end-date" class="form-label">End Date<span class="text-danger">*</span></label>
+                      </div>
+                    </div>
+
+                    <div class="col-12 md:col-9">
+                      <div class="mb-3">
+                        <p-calendar [showTime]="true" formControlName="endTime" [showSeconds]="true"></p-calendar>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 md:col-3">
+                <div class="mb-3">
+                  <label for="list-package" class="form-label">Package<span class="text-danger">*</span></label>
+                </div>
+              </div>
+
+              <div class="col-12 md:col-9">
+                <div class="mb-3 ">
+                  <p-dropdown [options]="packages" optionValue="id" optionLabel="packageName"
+                    placeholder="Select Package">
+                  </p-dropdown>
+                  <!-- <select class="form-select form-select-sm" id="list-package" aria-label=".form-select-sm example"
+                    required>
+                    <option *ngFor="let p of packages" [value]='p.id'>{{p.packageName}}</option>
+                  </select> -->
+                </div>
+              </div>
+
+              <div class="col-12 md:col-3">
+                <div class="mb-3">
+                  <label for="list-topic" class="form-label">Topic<span class="text-danger">*</span></label>
+                </div>
+              </div>
+
+              <div class="col-12 md:col-9">
+                <div class="mb-3 ">
+                  <p-dropdown [options]="topics" optionValue="id" optionLabel="questionTopic" placeholder=" Select
+                    Topic">
+                  </p-dropdown>
+                </div>
+              </div>
+
+              <div class="col-12 md:col-3">
+                <div class="mb-3">
+                  <label for="question-type" class="form-label">Question Type<span class="text-danger">*</span></label>
+                </div>
+              </div>
+
+              <div class="col-12 md:col-9">
+                <div class="mb-3 ">
+                  <div *ngFor="let type of types" class="field-checkbox">
+                    <p-checkbox [value]="type.id" (onChange)="addQuestionType(type.id)" [inputId]="type.questionType">
+                    </p-checkbox>
+                    <label [for]="type.id">{{ type.questionType }}</label>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-12 md:col-3">
+                <div class="mb-3">
+                  <label for="questions" class="form-label">Questions<span class="text-danger">*</span></label>
+                </div>
+              </div>
+
+              <div class="col-12 md:col-3">
+                <div class="mb-3">
+                  <p-button (click)="onAdd()" label="Add"></p-button>
+                  <!-- <button type="button"  class="btn btn-primary">Add</button> -->
+                </div>
+              </div>
+
+              <div class="grid">
+                <div *ngFor="let s of questionId.controls; let i = index" formArrayName="questionId">
+                  <div class="col-12 md:col-10">
+                    <!-- <select [formControlName]="i" id="questions" class="form-select form-select-sm mb-3"
+                      aria-label=".form-select-lg example" required>
+                      <option *ngFor="let q of questions" [value]="q.questionId">{{q.question}}
+                      </option>
+                    </select> -->
+                    <p-dropdown [options]="questions" [formControlName]="i" optionValue="questionId"
+                      optionLabel="question" placeholder="Select Question">
+                    </p-dropdown>
+
+                  </div>
+
+                  <div class="col-12 md:col-2">
+                    <div class="mb-3">
+                      <p-button label="Remove" (click)="remove(i)" styleClass="p-button-danger"></p-button>
+                      <!-- <button type="button" (click)="remove(i)" class="btn btn-danger">Remove</button> -->
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+
+              <div class="grid">
+                <div class="col-12 md:col-6">
+                  <app-button></app-button>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6">
+                <p-button type="submit" label="Submit"></p-button>
+                <p-button label="Cancel" styleClass="p-button-secondary" routerLink="/dashboard"></p-button>
+              </div>
+            </div>
+          </form>
+        </p-card>
+      </div>
+    </div>
+  </div>

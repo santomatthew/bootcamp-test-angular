@@ -1,0 +1,53 @@
+<!-- <div class="container position-absolute top-50 start-50 translate-middle">
+  <h3>Upload Candidate Information</h3>
+  <form [formGroup]="candidateInformationsReqDto" (ngSubmit)="onSubmit()">
+    <div class="row align-items-center gy-md-3">
+      <div *ngFor="let ft of fileTypes;let i = index">
+        <div class="col-md-3">
+          <div class="mb-3">
+            <label for="cv" class="form-label">{{ft.typeName}}<span class="text-danger">*</span></label>
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <div class="mb-3">
+            <input class="form-control form-control-sm" [id]="ft.id" (change)="fileUpload($event,ft.id,i)" type="file"
+              required>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div> -->
+<pre>{{candidateInformationsReqDto.value | json}}</pre>
+
+<div class="card flex justify-content-center">
+  <p-card header="Upload Candidate Information">
+    <form [formGroup]="candidateInformationsReqDto" (ngSubmit)="onSubmit()">
+
+      <div *ngFor="let ft of fileTypes;let i = index">
+        <div class="grid align-items-center gy-md-3">
+          <div class="col-12 md:col-3">
+            <div class="mb-3">
+              <label for="cv" class="form-label">{{ft.typeName}}<span class="text-danger">*</span></label>
+            </div>
+          </div>
+
+          <div class="col-12 md:col-9">
+            <div class="mb-3">
+              <!-- <input class="form-control form-control-sm" [id]="ft.id" (change)="fileUpload($event,ft.id,i)" type="file" -->
+              <!-- required> -->
+              <p-fileUpload mode="advanced" [id]="ft.id" [showCancelButton]="true" [showUploadButton]="false"
+                chooseLabel="Choose" (onSelect)="fileUpload($event,ft.id,i)" required>
+              </p-fileUpload>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <app-button typeBtn="submit" label="Submit"></app-button>
+      <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+    </form>
+  </p-card>
+</div>

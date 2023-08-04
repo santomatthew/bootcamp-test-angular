@@ -1,0 +1,128 @@
+<div class="container position-absolute top-50 start-50 translate-middle">
+  <h3>Questions</h3>
+  <form [formGroup]="answerReqDto" (ngSubmit)="onSubmit()">
+
+    <div class="row align-items-center gy-md-3 " formArrayName="data">
+      <div *ngFor="let q of answersReqDto.controls;let i=index;">
+        <!-- Question -->
+        <div class="row">
+          <div class="col-md-3">
+            <div class="mb-3">
+              <label for="question1" class="form-label">Question</label>
+            </div>
+          </div>
+
+          <div class="col-md-9">
+            <div class="mb-3">
+              <p>{{questions[i].question}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div [formGroupName]="i">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="mb-3">
+                <label for="answer1" class="form-label">Answer<span class="text-danger">*</span></label>
+              </div>
+            </div>
+
+            <!-- Option Answer -->
+            <div *ngIf="questions[i].questionOptions != null" class="col-md-9">
+              <div class="col-md-2">
+                <div class="mb-2">
+                  <div *ngFor="let opt of questions[i].questionOptions;let x =index" class="form-check ">
+                    <input class="form-check-input" type="radio" [value]="opt.questionOptionId"
+                      formControlName="questionOptionId" [id]="i">
+                    <label class="form-check-label" [for]="i">
+                      {{opt.optLabel}}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Essay Answer -->
+            <div *ngIf="questions[i].questionOptions ==null" class="col-md-9">
+              <div class="mb-3">
+                <textarea class="form-control" formControlName="essayAnswer" [id]="questions[i].questionId" rows="2"
+                  required></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+  </form>
+</div>
+
+<pre>{{answerReqDto.value |json}}</pre>
+
+<div class="card flex justify-content-center">
+  <p-card header="Questions">
+    <form [formGroup]="answerReqDto" (ngSubmit)="onSubmit()">
+
+      <div *ngFor="let q of answersReqDto.controls;let i=index;">
+        <div class="align-items-center " formArrayName="data">
+          <!-- Question -->
+          <div class="grid">
+            <div class="col-12 md:col-3">
+              <div class="">
+                <label for="question1" class="form-label">Question</label>
+              </div>
+            </div>
+
+            <div class="col-12 md:col-9">
+              <div class="mb-3">
+                <label for="">{{questions[i].question}}</label>
+                <!-- <p></p> -->
+              </div>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div [formGroupName]="i">
+              <div class="col-12 md:col-3">
+                <div class="mb-3">
+                  <label for="answer1" class="form-label">Answer<span class="text-danger">*</span></label>
+                </div>
+              </div>
+
+              <!-- Option Answer -->
+              <div *ngIf="questions[i].questionOptions != null" class="col-md-9">
+                <div class="col-12 md:col-9">
+                  <div class="mb-2">
+                    <div *ngFor="let opt of questions[i].questionOptions" class="field-checkbox">
+                      <p-radioButton [inputId]="opt.optLabel" [value]="opt.questionOptionId"
+                        formControlName="questionOptionId"></p-radioButton>
+                      <label [for]="i" class="ml-2">{{ opt.optLabel }}</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Essay Answer -->
+              <div *ngIf="questions[i].questionOptions ==null" class="col-md-9">
+                <div class="mb-3">
+                  <!-- <textarea class="form-control" formControlName="essayAnswer" [id]="questions[i].questionId" rows="2"
+                    required></textarea> -->
+                  <textarea pInputTextarea rows="1" cols="30" formControlName="essayAnswer" required></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <app-button typeBtn="submit" label="Submit"></app-button>
+
+      <!-- <div class="col-md-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div> -->
+
+    </form>
+  </p-card>
+</div>
