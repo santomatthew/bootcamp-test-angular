@@ -14,6 +14,7 @@ import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CardModule } from 'primeng/card';
 import { ButtonCommponent } from "./component/button/button.component";
+import { SharedModule } from "./component/shared/shared.module";
 
 const routes: Routes = [
     {
@@ -107,7 +108,8 @@ const routes: Routes = [
         ButtonModule,
         CardModule,
         BrowserAnimationsModule,
-        ButtonCommponent
+        ButtonCommponent,
+        SharedModule
 
     ],
     exports: [

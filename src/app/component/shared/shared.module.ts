@@ -14,6 +14,13 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { CheckboxModule } from 'primeng/checkbox';
 import { CalendarModule } from 'primeng/calendar';
 import { ButtonCommponent } from "../button/button.component";
+import { PasswordModule } from 'primeng/password';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { MenuModule } from 'primeng/menu';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
+import { UrlPipe } from "src/app/pipes/url.pipe";
+
 
 
 @NgModule({
@@ -22,12 +29,14 @@ import { ButtonCommponent } from "../button/button.component";
     imports: [
         CommonModule, MenubarModule, DropdownModule, SpeedDialModule, TableModule
         , ButtonModule, DialogModule, RadioButtonModule, CardModule, InputTextModule,
-        InputTextareaModule, FileUploadModule, CheckboxModule, CalendarModule, ButtonCommponent
+        InputTextareaModule, FileUploadModule, CheckboxModule, CalendarModule, ButtonCommponent,
+        PasswordModule, OverlayPanelModule, MenuModule, AvatarGroupModule, AvatarModule, UrlPipe
     ],
     exports: [
         MenubarModule, DropdownModule, SpeedDialModule, TableModule
         , ButtonModule, DialogModule, RadioButtonModule, CardModule, InputTextModule,
-        InputTextareaModule, FileUploadModule, CheckboxModule, CalendarModule, ButtonCommponent
+        InputTextareaModule, FileUploadModule, CheckboxModule, CalendarModule, ButtonCommponent,
+        PasswordModule, OverlayPanelModule, MenuModule, AvatarGroupModule, AvatarModule, UrlPipe
     ]
 })
 export class SharedModule {

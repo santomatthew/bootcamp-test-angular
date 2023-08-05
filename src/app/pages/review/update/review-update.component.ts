@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AnswerGetResDto } from "@dto/questionanswer/answer-get.res.dto";
@@ -12,7 +12,7 @@ import { ReviewStatusService } from "@services/reviewstatus.service";
     selector: 'review-update',
     templateUrl: './review-update.component.html'
 })
-export class ReviewUpdateComponent implements OnInit {
+export class ReviewUpdateComponent implements OnInit, AfterViewChecked {
 
     answers: AnswerGetResDto[] = []
     reviewStatus: ReviewStatusGetResDto[] = []
@@ -32,7 +32,8 @@ export class ReviewUpdateComponent implements OnInit {
         private reviewStatusService: ReviewStatusService,
         private reviewDetailService: ReviewDetailService,
         private router: Router,
-        private fb: NonNullableFormBuilder) {
+        private fb: NonNullableFormBuilder,
+        private cd: ChangeDetectorRef) {
 
     }
 
@@ -42,6 +43,9 @@ export class ReviewUpdateComponent implements OnInit {
     }
 
 
+    ngAfterViewChecked(): void {
+        this.cd.detectChanges()
+    }
 
     getDetails() {
         this.activated.params.subscribe(result => {

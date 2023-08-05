@@ -3,18 +3,16 @@
   <div class=" col-12 md:col-6">
     <div class="card ">
       <p-card header="Update User">
-        <form [formGroup]="updateProfileDto">
+        <form [formGroup]="updateProfileDto" (ngSubmit)="onSubmit()">
           <div class="grid align-items-center gy-md-3">
             <div class="col-12 md:col-3">
 
-              <label for="email" class="form-label">Email</label>
+              <label class="form-label">Email</label>
 
             </div>
 
             <div class="col-12 md:col-9">
-
-              <input id="disabled-input" type="text" pInputText [disabled]="true" placeholder="{{profile.email}}" />
-
+              <input id="disabled-input" type="text" pInputText [disabled]="true" [value]="profile.email" />
             </div>
 
             <div class="col-12 md:col-3">
@@ -80,7 +78,7 @@
 
             <div class="grid ">
               <div class="col-12 md:col-6 ">
-                <app-button typeBtn=" submit" label="Update">
+                <app-button typeBtn="submit" label="Update">
                 </app-button>
               </div>
               <div class="col-12 md:col-6 ">

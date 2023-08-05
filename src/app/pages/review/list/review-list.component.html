@@ -1,35 +1,3 @@
-<div class="container">
-  <h3>Review List</h3>
-  <div class="row">
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">Name</th>
-            <th scope="col">Progress Status</th>
-            <th scope="col">Review Status</th>
-            <th scope="col">Option</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let r of reviews;let i=index">
-            <th scope="row">{{i+1}}</th>
-            <td>{{r.candidateName}}</td>
-            <td>{{r.progressStatusName}}</td>
-            <td>{{r.reviewStatusName}}</td>
-            <td>
-              <button type="button" (click)="getScore(r.reviewId)" class="btn btn-info" data-bs-toggle="modal"
-                data-bs-target="#exampleModal" style="margin-right: 1rem;">Score</button>
-              <a type="button" class="btn btn-primary" (click)="review(r.candidateId)">Review</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
 <div class="grid justify-content-center">
   <div class="col-12 md:col-10 ">
     <div class="card">

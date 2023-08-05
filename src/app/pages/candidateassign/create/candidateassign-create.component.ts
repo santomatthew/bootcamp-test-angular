@@ -13,6 +13,7 @@ import { QuestionPackageService } from "@services/questionpackage.service";
 import { QuestionTopicService } from "@services/questiontopic.service";
 import { QuestionTypeService } from "@services/questiontype.service";
 import { UserService } from "@services/user.service";
+import { convertUTCToLocalDateTime } from "src/app/util/convert-date.util";
 
 @Component({
     selector: 'candidateassign-create',
@@ -127,18 +128,35 @@ export class CandidateAssignCreateComponent implements OnInit, AfterViewChecked 
             this.candidateAssigns.push(this.fb.group({
                 questionTypeId: [questionTypeId, [Validators.required]],
                 startTime: ['', [Validators.required]],
-                endTime: ['', [Validators.required]]
+                endTime: ['', [Validators.required]],
+                startTimeHelper: ['', [Validators.required]],
+                endTimeHelper: ['', [Validators.required]],
             }))
             this.typesSelected.push(questionTypeId)
         }
     }
+
+    convertStartDate(event: any, index: number) {
+        this.candidateAssigns.at(index).patchValue({
+            startTime: convertUTCToLocalDateTime(event)
+        })
+    }
+
+
+    convertEndDate(event: any, index: number) {
+        this.candidateAssigns.at(index).patchValue({
+            endTime: convertUTCToLocalDateTime(event)
+        })
+    }
+
+
 
     remove(i: number) {
         this.questionId.removeAt(i)
     }
 
     onSubmit() {
-        if (this.candidateAssignsDto.valid) {
+        if (this.candidateAssignsDto.valid && this.questionId.length > 0) {
             const data = this.candidateAssignsDto.getRawValue()
             this.candidateAssignService.createCandidateAssign(data).subscribe(result => {
                 console.log(result);

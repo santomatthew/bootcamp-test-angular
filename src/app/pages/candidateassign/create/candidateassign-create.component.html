@@ -4,14 +4,13 @@
 
   </div>
 
-  <div class="grid justify-content-center">
+  <div class="grid justify-content-center ">
     <div class="col-12 md:col-6">
-      <div class="card flex justify-content-center ">
+      <div class="card">
         <p-card header=" Candidate Assign">
           <form [formGroup]="candidateAssignsDto" (ngSubmit)="onSubmit()">
             <!-- [formGroup]="candidateAssignReqDto " " = -->
-
-            <div class="grid align-items-center gy-md-3">
+            <div class="grid">
               <div class="col-12 md:col-3">
                 <div class="mb-3">
                   <label for="list-candidate" class="form-label">Candidate<span class="text-danger">*</span></label>
@@ -40,7 +39,8 @@
                 </div>
               </div>
 
-              <div *ngFor="let ca of candidateAssigns.controls; let x=index" formArrayName="candidateAssigns">
+              <div class="col-12" *ngFor="let ca of candidateAssigns.controls; let x=index"
+                formArrayName="candidateAssigns">
                 <div [formGroupName]="x">
                   <div class="grid">
                     <div class="col-12 md:col-3">
@@ -51,9 +51,10 @@
 
                     <div class="col-12 md:col-9">
                       <div class="mb-3">
-                        <p-calendar [showTime]="true" formControlName="startTime" [showSeconds]="true"></p-calendar>
-                        <!-- <input type="datetime-local" class="form-control" id="start-date" formControlName="startTime"
-                          required> -->
+                        <p-calendar [showTime]="true" formControlName="startTimeHelper"
+                          (onSelect)="convertStartDate($event,x)" [showSeconds]="true">
+                        </p-calendar>
+
                       </div>
                     </div>
                   </div>
@@ -67,14 +68,14 @@
 
                     <div class="col-12 md:col-9">
                       <div class="mb-3">
-                        <p-calendar [showTime]="true" formControlName="endTime" [showSeconds]="true"></p-calendar>
-
+                        <p-calendar [showTime]="true" formControlName="endTimeHelper"
+                          (onSelect)="convertEndDate($event,x)" [showSeconds]="true"></p-calendar>
                       </div>
                     </div>
                   </div>
+
                 </div>
               </div>
-
               <div class="col-12 md:col-3">
                 <div class="mb-3">
                   <label for="list-package" class="form-label">Package<span class="text-danger">*</span></label>
@@ -86,10 +87,6 @@
                   <p-dropdown [options]="packages" optionValue="id" optionLabel="packageName"
                     placeholder="Select Package">
                   </p-dropdown>
-                  <!-- <select class="form-select form-select-sm" id="list-package" aria-label=".form-select-sm example"
-                    required>
-                    <option *ngFor="let p of packages" [value]='p.id'>{{p.packageName}}</option>
-                  </select> -->
                 </div>
               </div>
 
@@ -123,7 +120,6 @@
                 </div>
               </div>
 
-
               <div class="col-12 md:col-3">
                 <div class="mb-3">
                   <label for="questions" class="form-label">Questions<span class="text-danger">*</span></label>
@@ -133,40 +129,22 @@
               <div class="col-12 md:col-3">
                 <div class="mb-3">
                   <p-button (click)="onAdd()" label="Add"></p-button>
-                  <!-- <button type="button"  class="btn btn-primary">Add</button> -->
                 </div>
               </div>
 
-              <div class="grid">
-                <div *ngFor="let s of questionId.controls; let i = index" formArrayName="questionId">
-                  <div class="col-12 md:col-10">
-                    <!-- <select [formControlName]="i" id="questions" class="form-select form-select-sm mb-3"
-                      aria-label=".form-select-lg example" required>
-                      <option *ngFor="let q of questions" [value]="q.questionId">{{q.question}}
-                      </option>
-                    </select> -->
+              <div class="col-12" *ngFor="let s of questionId.controls; let i = index" formArrayName="questionId">
+                <div class="grid">
+                  <div class="col-12 md:col-3">
                     <p-dropdown [options]="questions" [formControlName]="i" optionValue="questionId"
                       optionLabel="question" placeholder="Select Question">
                     </p-dropdown>
-
                   </div>
-
                   <div class="col-12 md:col-2">
-                    <div class="mb-3">
-                      <p-button label="Remove" (click)="remove(i)" styleClass="p-button-danger"></p-button>
-                      <!-- <button type="button" (click)="remove(i)" class="btn btn-danger">Remove</button> -->
-                    </div>
+                    <p-button label="Remove" (click)="remove(i)" styleClass="p-button-danger"></p-button>
                   </div>
                 </div>
-
-
               </div>
 
-              <div class="grid">
-                <div class="col-12 md:col-6">
-                  <app-button></app-button>
-                </div>
-              </div>
               <div class="col-12 col-sm-6">
                 <p-button type="submit" label="Submit"></p-button>
                 <p-button label="Cancel" styleClass="p-button-secondary" routerLink="/dashboard"></p-button>

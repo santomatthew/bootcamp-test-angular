@@ -9,6 +9,8 @@ import { BASE_URL } from "../constant/api.constant";
 import { ProfileGetResDto } from "../dto/profile/profile-get.res.dto";
 import { UserPasswordUpdateReqDto } from "../dto/user/user-password-update.req.dto";
 import { UpdateResDto } from "../dto/update.res.dto";
+import { UserUpdateReqDto } from "@dto/user/user-update.req.dto";
+import { ProfileUpdateReqDto } from "@dto/profile/profile-update.req.dto";
 
 @Injectable({
     providedIn: 'root'
@@ -35,6 +37,10 @@ export class UserService {
 
     changePassword(data: UserPasswordUpdateReqDto): Observable<UpdateResDto> {
         return this.base.patch<UpdateResDto>(`${BASE_URL}/users`, data)
+    }
+
+    updateProfile(data: ProfileUpdateReqDto): Observable<UpdateResDto> {
+        return this.base.patch<UpdateResDto>(`${BASE_URL}/users/update`, data)
     }
 
 }

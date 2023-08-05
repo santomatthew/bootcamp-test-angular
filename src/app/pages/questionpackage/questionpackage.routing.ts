@@ -7,6 +7,7 @@ import { CommonModule } from "@angular/common";
 import { Table, TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from "primeng/card";
+import { SharedModule } from "src/app/component/shared/shared.module";
 const routes: Routes = [
     {
         path: '',
@@ -28,7 +29,7 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         FormsModule,
         ReactiveFormsModule, CommonModule, TableModule, ButtonModule, TableModule,
-        CardModule
+        CardModule, SharedModule
     ],
     exports: [
         RouterModule,

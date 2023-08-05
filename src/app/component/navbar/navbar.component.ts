@@ -23,13 +23,14 @@ export class NavbarComponent {
     ngOnInit(): void {
         const profile = this.authService.getProfile()
         if (profile) {
-            this.imgUrl = `http://localhost:8080/files/${profile.photoId}`
+            this.imgUrl = `${profile.photoId}`
             this.roleCode = profile.roleCode
         }
 
         this.items = [
             {
-                label: 'Bootcamp Test'
+                label: 'Bootcamp Test',
+                routerLink: '/dashboard'
             }
             ,
             {
@@ -80,24 +81,22 @@ export class NavbarComponent {
         ];
 
         this.items2 = [
+
             {
-                label: 'Master Data',
-                items: [
-                    {
-                        label: 'Profile',
-                        routerLink: '/users/profile'
-                    },
-                    {
-                        label: 'Change Password',
-                        routerLink: '/users/change-password'
-                    },
-                    {
-                        label: 'Logout',
-                        command: () => this.logout()
-                    },
-                ]
-            }
+                label: 'Profile',
+                routerLink: '/users/profile'
+            },
+            {
+                label: 'Change Password',
+                routerLink: '/users/change-password'
+            },
+            {
+                label: 'Logout',
+                command: () => this.logout()
+            },
         ]
+
+
 
     }
 

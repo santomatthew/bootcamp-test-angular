@@ -14,9 +14,9 @@ export class UserProfileComponent implements OnInit {
     profile!: ProfileGetResDto
 
     updateProfileDto = this.fb.group({
-        fullName: ['', [Validators.required]],
-        address: ['', [Validators.required]],
-        phone: ['', [Validators.required]],
+        fullName: [''],
+        address: [''],
+        phone: [''],
         fileName: [''],
         ext: ['']
     })
@@ -59,11 +59,6 @@ export class UserProfileComponent implements OnInit {
                     fileName: resultBase64,
                     ext: resultExtension
                 })
-
-                // this.companyUpdateReqDto.patchValue({
-                //     fileName: resultBase64,
-                //     fileExt: resultExtension
-                // })
                 fileUpload.clear();
             })
         }
@@ -73,5 +68,19 @@ export class UserProfileComponent implements OnInit {
         this.userService.getProfile().subscribe(result => {
             this.profile = result
         })
+    }
+
+    onSubmit() {
+        if (this.updateProfileDto.valid) {
+            const data = this.updateProfileDto.getRawValue()
+            this.userService.updateProfile(data).subscribe(result => {
+                this.getProfile()
+            })
+
+        }
+        else {
+            console.log("Invalid Update");
+        }
+
     }
 }

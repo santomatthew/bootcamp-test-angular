@@ -218,25 +218,21 @@
 
 
               </div>
-              <div class="grid ">
-                <div formArrayName="questionOptions" *ngFor="let o of questionOption(i).controls; let j = index">
+              <div class="col-12" formArrayName="questionOptions"
+                *ngFor="let o of questionOption(i).controls; let j = index">
+                <div class="grid ">
                   <div [formGroupName]="j">
-                    <div class="col-12 md:col-3 gy-md-3">
+                    <div class="col-12 md:col-3 ">
                       <!-- <input type="text" class="form-control" formControlName="optLabel" id="option1"> -->
                       <input type="text" pInputText formControlName="optLabel" />
                     </div>
-                    <div class="col-12 md:col-2 gy-md-3">
-                      <!-- <select class="form-select" formControlName="correct" aria-label="Default select example">
-                        <option value="true">True</option>
-                        <option value="false">False</option>
-                      </select> -->
+                    <div class="col-12 md:col-3 ">
                       <p-dropdown formControlName="correct" [options]="options" optionLabel="name" optionValue="value"
                         placeholder="Select option"></p-dropdown>
                     </div>
-                    <div class="col-12 md:col-2 ">
+                    <div class="col-12 md:col-3">
                       <app-button (click)="removeOption(i,j)" label="Delete Option" styleBtn="p-button-danger">
                       </app-button>
-                      <!-- <button type="button" (click)="removeOption(i,j)" class="btn btn-danger">Delete</button> -->
                     </div>
                   </div>
                 </div>
@@ -245,8 +241,7 @@
               <div class="grid">
                 <div class="col-12 md:col-12 gy-2">
                   <div class="mb-3 ">
-                    <!-- <app-button (click)="remove(i)" label="Remove" typeBtn="button" styleBtn="app-button-danger">
-                      </app-button> -->
+
                     <app-button (click)="remove(i)" label="Remove" styleBtn="p-button-danger"></app-button>
                   </div>
                 </div>

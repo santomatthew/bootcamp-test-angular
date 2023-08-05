@@ -1,74 +1,83 @@
-<div class="container">
-  <h3>Review</h3>
-  <div class="row" *ngFor="let a of answers">
-    <!-- Question 1 -->
-    <div class="col-md-2">
-      <div class="mb-3">
-        <label for="question1" class="form-label">Question</label>
-      </div>
-    </div>
+<pre>{{updateReviewDto.value | json}}</pre>
 
-    <div class="col-md-10">
-      <div class="mb-3">
-        <label for="question1" class="form-label">{{a.question}}</label>
-      </div>
-    </div>
 
-    <div class="col-md-2">
-      <div class="mb-3">
-        <label for="answer2" class="form-label">Answer</label>
-      </div>
-    </div>
+<div class="grid justify-content-center">
+  <div class="col-12 ">
+    <div class="card flex justify-content-center">
+      <p-card header="Review">
+        <div class="grid" *ngFor="let a of answers">
+          <!-- Question 1 -->
+          <div class="col-12 md:col-3">
+            <label for="question1" class="form-label">Question</label>
+          </div>
 
-    <div class="col-md-10">
-      <div class="mb-3">
-        <p>{{a.essayAnswer}}</p>
-      </div>
+          <div class="col-12 md:col-7">
+            <label for="question1" class="form-label">{{a.question}}</label>
+          </div>
+
+          <div class="col-12 md:col-3">
+
+            <label for="answer2" class="form-label">Answer</label>
+
+          </div>
+
+          <div class="col-12 md:col-7">
+
+            <label for="question1" class="form-label">{{a.essayAnswer}}</label>
+
+          </div>
+        </div>
+        <p-card header="Scoring">
+          <div class="grid">
+            <form [formGroup]="updateReviewDto" (ngSubmit)="onSubmit()">
+              <div class="col-12 md:col-3">
+                <label for="status" class="form-label">Status<span class="text-danger">*</span></label>
+              </div>
+              <div class="col-12 md:col-3">
+                <div class="mb-3 ">
+                  <p-dropdown formControlName="reviewStatusId" optionValue="id" [options]="reviewStatus"
+                    optionLabel="statusName" placeholder="Select Status">
+                  </p-dropdown>
+                </div>
+              </div>
+              <div class="col-12 md:col-3">
+                <div class="mb-3">
+                  <label for="grade" class="form-label">Grade<span class="text-danger">*</span></label>
+                </div>
+              </div>
+              <div class="col-12 md:col-3">
+                <!-- <input type="number" formControlName="grade" step="anyone" class="form-control" id="grade" required> -->
+                <input type="number" pInputText formControlName="grade" />
+              </div>
+
+              <div class="col-12 md:col-3">
+                <div class="mb-3">
+                  <label for="notes" class="form-label">Notes<span class="text-danger">*</span></label>
+                </div>
+              </div>
+              <div class="col-12 md:col-3">
+                <textarea rows="3" cols="30" pInputTextarea formControlName="notes"></textarea>
+              </div>
+              <div class="grid">
+                <div class="col-12 md:col-12">
+                  <app-button type="submit" label="Submit" style="text-align: justify;margin-right: 1rem;">
+                  </app-button>
+                  <app-button styleBtn="p-button-secondary" label="Cancel" routerLink="/reviews"></app-button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </p-card>
+      </p-card>
     </div>
   </div>
+</div>
 
+<div class="grid">
+  <div class="col-12 ">
+    <div class="card flex justify-content-center">
 
-  <div class="row">
-    <h4>Scoring</h4>
-    <form [formGroup]="updateReviewDto" (ngSubmit)="onSubmit()">
-      <div class="row">
-        <div class="col-md-1">
-          <label for="status" class="form-label">Status<span class="text-danger">*</span></label>
-        </div>
-        <div class="col-md-3">
-          <div class="mb-3 ">
-            <select formControlName="reviewStatusId" class="form-select form-select-sm" id="status"
-              aria-label=".form-select-sm example" required>
-              <option *ngFor="let s of reviewStatus" selected [value]="s.id">{{s.statusName}}</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-1">
-          <div class="mb-3">
-            <label for="grade" class="form-label">Grade<span class="text-danger">*</span></label>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <input type="number" formControlName="grade" step="anyone" class="form-control" id="grade" required>
-        </div>
-
-        <div class="col-md-1">
-          <div class="mb-3">
-            <label for="notes" class="form-label">Notes<span class="text-danger">*</span></label>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <textarea class="form-control" formControlName="notes" id="notes" rows="3" required></textarea>
-        </div>
-
-      </div>
-      <div class="row ">
-        <div class="col-sm-6 gy-3">
-          <button type="submit" class="btn btn-primary" style="text-align: justify;margin-right: 1rem;">Submit</button>
-          <a class="btn btn-secondary" routerLink="/reviews">Cancel</a>
-        </div>
-      </div>
-    </form>
+    </div>
   </div>
+</div>

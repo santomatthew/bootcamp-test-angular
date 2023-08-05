@@ -19,6 +19,7 @@ export class FileService {
             toBase64(file).then(result => {
                 const resultBase64 = result.substring(result.indexOf(",") + 1, result.length)
                 const resultExtension = file.name.substring(file.name.indexOf(".") + 1, file.name.length)
+
                 callback(resultExtension, resultBase64)
                 console.log(resultBase64)
                 console.log(resultExtension)

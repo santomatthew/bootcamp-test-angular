@@ -75,9 +75,9 @@
 
           <div class="md:col-9">
             <div class="mb-3">
-              <!-- <p-toast></p-toast> -->
-              <p-fileUpload mode="advanced" [showCancelButton]="true" [showUploadButton]="false" chooseLabel="Choose"
-                (onSelect)="onUpload($event)">
+
+              <p-fileUpload mode="basic" chooseLabel="Choose" #file accept="image/*"
+                (onSelect)="fileUpload($event,file)">
               </p-fileUpload>
             </div>
           </div>

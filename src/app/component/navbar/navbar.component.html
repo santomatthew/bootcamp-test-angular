@@ -56,12 +56,15 @@
   </div>
 </nav> -->
 
-<p-menubar [model]="items">
-  <ng-template pTemplate="start">
-  </ng-template>
 
+
+<p-menubar [model]="items">
   <ng-template pTemplate="end">
-    <p-menubar [model]="items2"></p-menubar>
+    <p-overlayPanel #op>
+      <p-menu [model]="items2"> </p-menu>
+    </p-overlayPanel>
+    <p-avatar [image]="imgUrl | url" styleClass="mr-2" size="large" shape="circle" (click)="op.toggle($event)">
+    </p-avatar>
   </ng-template>
 </p-menubar>
 
