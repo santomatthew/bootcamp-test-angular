@@ -45,7 +45,7 @@ export class QuestionAnswerCreateComponent implements OnInit {
                         questionId: [this.questions[i].questionId, [Validators.required]],
                         essayAnswer: [null],
                         questionOptionId: [0, [Validators.required]],
-                        questionOptionIdHelper: [false, [Validators.required]]
+                        [`questionOptionId${this.answersReqDto.length}`]: [],
                     }))
                 }
                 else {
@@ -61,7 +61,7 @@ export class QuestionAnswerCreateComponent implements OnInit {
 
     selected(event: any, index: number) {
         this.answersReqDto.at(index).patchValue({
-
+            questionOptionId: event.value
         })
     }
 

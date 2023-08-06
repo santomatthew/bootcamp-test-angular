@@ -12,6 +12,8 @@ import { FileUpload } from "primeng/fileupload";
 export class UserProfileComponent implements OnInit {
 
     profile!: ProfileGetResDto
+    email!: string
+    roleName!: string
 
     updateProfileDto = this.fb.group({
         fullName: [''],
@@ -67,6 +69,8 @@ export class UserProfileComponent implements OnInit {
     getProfile() {
         this.userService.getProfile().subscribe(result => {
             this.profile = result
+            this.email = this.profile.email
+            this.roleName = this.profile.roleName
         })
     }
 

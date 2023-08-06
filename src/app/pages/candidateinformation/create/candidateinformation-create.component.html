@@ -36,10 +36,11 @@
 
           <div class="col-12 md:col-9">
             <div class="mb-3">
-              <!-- <input class="form-control form-control-sm" [id]="ft.id" (change)="fileUpload($event,ft.id,i)" type="file" -->
-              <!-- required> -->
-              <p-fileUpload mode="advanced" [id]="ft.id" [showCancelButton]="true" [showUploadButton]="false"
+              <!-- <p-fileUpload mode="advanced" [id]="ft.id" [showCancelButton]="true" [showUploadButton]="false"
                 chooseLabel="Choose" (onSelect)="fileUpload($event,ft.id,i)" required>
+              </p-fileUpload> -->
+              <p-fileUpload mode="basic" chooseLabel="Choose" #file accept="image/*"
+                (onSelect)="fileUpload($event,file,i,ft.id)">
               </p-fileUpload>
             </div>
           </div>

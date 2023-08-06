@@ -36,7 +36,7 @@
                     <div class="col-12 md:col-9" *ngFor="let opt of questions[i].questionOptions"
                       class="field-checkbox">
                       <p-radioButton [inputId]="opt.optLabel" [value]="opt.questionOptionId"
-                        formControlName="questionOptionId" (onClick)="selected($event,i)"></p-radioButton>
+                        formControlName="questionOptionId{{i}}" (onClick)="selected($event,i)"></p-radioButton>
                       <label [for]="i" class="ml-2">{{ opt.optLabel }}</label>
                     </div>
                   </div>
@@ -44,8 +44,6 @@
                 <!-- Essay Answer -->
                 <div class="col-12 md:col-9" *ngIf="questions[i].questionOptions ==null" class="col-md-9">
                   <div class="mb-3">
-                    <!-- <textarea class="form-control" formControlName="essayAnswer" [id]="questions[i].questionId" rows="2"
-                          required></textarea> -->
                     <textarea pInputTextarea rows="1" cols="30" formControlName="essayAnswer" required></textarea>
                   </div>
                 </div>

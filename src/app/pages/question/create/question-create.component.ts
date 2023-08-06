@@ -67,8 +67,16 @@ export class QuestionCreateComponent implements OnInit {
             question: ['', [Validators.required]],
             questionOptions: this.fb.array(this.questionOptionInsertdto),
             questionTopicId: [0, [Validators.required]],
-            questionPackageId: [0, [Validators.required]]
+            questionPackageId: [0, [Validators.required]],
+            [`questionTypeId${this.forms.length}`]: [],
         }))
+    }
+
+
+    patchByIndex(event: any, index: number) {
+        this.forms.at(index).patchValue({
+            questionTypeId: event.value
+        })
     }
 
     remove(i: number) {

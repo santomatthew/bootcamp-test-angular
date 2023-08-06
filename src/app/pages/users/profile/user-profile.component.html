@@ -6,13 +6,12 @@
         <form [formGroup]="updateProfileDto" (ngSubmit)="onSubmit()">
           <div class="grid align-items-center gy-md-3">
             <div class="col-12 md:col-3">
-
               <label class="form-label">Email</label>
-
             </div>
 
             <div class="col-12 md:col-9">
-              <input id="disabled-input" type="text" pInputText [disabled]="true" [value]="profile.email" />
+              <!-- <label class="form-label" [textContent]="profile.email"></label> -->
+              <input id="disabled-input" type="text" pInputText [disabled]="true" [value]="email" />
             </div>
 
             <div class="col-12 md:col-3">
@@ -23,7 +22,7 @@
 
             <div class="col-12 md:col-9">
 
-              <p-dropdown [placeholder]="profile.roleName" [disabled]=" true"></p-dropdown>
+              <p-dropdown [placeholder]="roleName" [disabled]=" true"></p-dropdown>
 
 
             </div>

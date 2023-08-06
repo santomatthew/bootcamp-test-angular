@@ -6,9 +6,12 @@ import { AppRouting } from './app.routing';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from "@angular/common/http"
-import { ToastrModule } from 'ngx-toastr';
+import { ToastModule } from 'primeng/toast';
+
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from 'primeng/api';
+import { MessageService, SharedModule } from 'primeng/api';
+
 
 @NgModule({
   declarations: [
@@ -20,10 +23,10 @@ import { SharedModule } from 'primeng/api';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
-    SharedModule
+    SharedModule,
+    ToastModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

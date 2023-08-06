@@ -1,8 +1,5 @@
   <pre>{{candidateAssignsDto.value |json}}</pre>
-  <div class="container">
-    <h3>Candidate Assign</h3>
 
-  </div>
 
   <div class="grid justify-content-center ">
     <div class="col-12 md:col-6">
@@ -54,7 +51,6 @@
                         <p-calendar [showTime]="true" formControlName="startTimeHelper"
                           (onSelect)="convertStartDate($event,x)" [showSeconds]="true">
                         </p-calendar>
-
                       </div>
                     </div>
                   </div>
@@ -85,7 +81,7 @@
               <div class="col-12 md:col-9">
                 <div class="mb-3 ">
                   <p-dropdown [options]="packages" optionValue="id" optionLabel="packageName"
-                    placeholder="Select Package">
+                    placeholder="Select Package" (onClick)="onRefresh()" formControlName="packageId">
                   </p-dropdown>
                 </div>
               </div>
@@ -98,8 +94,9 @@
 
               <div class="col-12 md:col-9">
                 <div class="mb-3 ">
-                  <p-dropdown [options]="topics" optionValue="id" optionLabel="questionTopic" placeholder=" Select
-                    Topic">
+                  <p-dropdown [options]="topics" (onClick)="onRefresh()" optionValue="id" optionLabel="questionTopic"
+                    placeholder=" Select
+                    Topic" formControlName="topicId">
                   </p-dropdown>
                 </div>
               </div>
@@ -113,7 +110,8 @@
               <div class="col-12 md:col-9">
                 <div class="mb-3 ">
                   <div *ngFor="let type of types" class="field-checkbox">
-                    <p-checkbox [value]="type.id" (onChange)="addQuestionType(type.id)" [inputId]="type.questionType">
+                    <p-checkbox [value]="type.id" (onChange)="addQuestionType(type.id)" [inputId]="type.questionType"
+                      formControlName="questionTypeId">
                     </p-checkbox>
                     <label [for]="type.id">{{ type.questionType }}</label>
                   </div>

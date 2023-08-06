@@ -20,6 +20,7 @@ import { MenuModule } from 'primeng/menu';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { UrlPipe } from "src/app/pipes/url.pipe";
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 
 
@@ -30,13 +31,13 @@ import { UrlPipe } from "src/app/pipes/url.pipe";
         CommonModule, MenubarModule, DropdownModule, SpeedDialModule, TableModule
         , ButtonModule, DialogModule, RadioButtonModule, CardModule, InputTextModule,
         InputTextareaModule, FileUploadModule, CheckboxModule, CalendarModule, ButtonCommponent,
-        PasswordModule, OverlayPanelModule, MenuModule, AvatarGroupModule, AvatarModule, UrlPipe
+        PasswordModule, OverlayPanelModule, MenuModule, AvatarGroupModule, AvatarModule, UrlPipe, InputSwitchModule
     ],
     exports: [
         MenubarModule, DropdownModule, SpeedDialModule, TableModule
         , ButtonModule, DialogModule, RadioButtonModule, CardModule, InputTextModule,
         InputTextareaModule, FileUploadModule, CheckboxModule, CalendarModule, ButtonCommponent,
-        PasswordModule, OverlayPanelModule, MenuModule, AvatarGroupModule, AvatarModule, UrlPipe
+        PasswordModule, OverlayPanelModule, MenuModule, AvatarGroupModule, AvatarModule, UrlPipe, InputSwitchModule
     ]
 })
 export class SharedModule {

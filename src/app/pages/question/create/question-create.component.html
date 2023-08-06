@@ -156,8 +156,8 @@
                 <div class="col-12 md:col-9">
                   <div class="mb-3">
                     <div *ngFor="let t of types" class="field-checkbox">
-                      <p-radioButton id="t.id" formControlName="questionTypeId" [inputId]="t.questionType"
-                        [value]="t.id">
+                      <p-radioButton id="t.id" formControlName="questionTypeId{{i}}" (onClick)="patchByIndex($event,i)"
+                        [inputId]="t.questionType" [value]="t.id">
                       </p-radioButton>
                       <label [for]="t.id" class="ml-2">{{ t.questionType }}</label>
                     </div>

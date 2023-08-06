@@ -47,6 +47,7 @@
             <th>Address</th>
             <th>Role</th>
             <th>Is Active</th>
+            <th>Update Is Active</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-users let-i="rowIndex">
@@ -56,6 +57,10 @@
             <td>{{users.address}}</td>
             <td>{{users.roleName}}</td>
             <td>{{users.isActive}}</td>
+            <td>
+              <p-inputSwitch [ngModel]="users.isActive" (onChange)="updateIsActive(users.id,!users.isActive)">
+              </p-inputSwitch>
+            </td>
             <td>
               <!-- <p-button (click)="showDialog()" label="Update" styleClass="p-button-raised"></p-button>
               <p-dialog header="Update User Active" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }"

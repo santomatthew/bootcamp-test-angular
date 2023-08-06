@@ -23,6 +23,17 @@ export class UserListComponent implements OnInit {
         })
     }
 
+    updateIsActive(userId: number, isActive: boolean) {
+
+        const data = {
+            id: userId,
+            isActive
+        }
+        this.userService.updateIsActive(data).subscribe(result => {
+
+        })
+    }
+
     showDialog() {
         this.visible = true;
     }

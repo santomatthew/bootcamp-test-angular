@@ -43,4 +43,8 @@ export class UserService {
         return this.base.patch<UpdateResDto>(`${BASE_URL}/users/update`, data)
     }
 
+    updateIsActive(data: UserUpdateReqDto): Observable<UpdateResDto> {
+        return this.base.patch<UpdateResDto>(`${BASE_URL}/users/update/active`, data)
+
+    }
 }

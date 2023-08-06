@@ -39,6 +39,9 @@ export class CandidateAssignCreateComponent implements OnInit, AfterViewChecked 
         candidateAssigns: this.fb.array(this.candidateAssignReqDto),
         candidateId: [0, [Validators.required]],
         reviewerId: [0, [Validators.required]],
+        packageId: [0, [Validators.required]],
+        topicId: [0, [Validators.required]],
+        questionTypeId: [0, [Validators.required]],
         questionId: this.fb.array(this.questionIdDto)
     })
 
@@ -57,8 +60,8 @@ export class CandidateAssignCreateComponent implements OnInit, AfterViewChecked 
         this.getReviewers()
         this.getPackages()
         this.getTopics()
-        this.getQuestions()
         this.getQuestionType()
+        this.getQuestions()
     }
     ngAfterViewChecked(): void {
         this.cd.detectChanges()
@@ -134,6 +137,7 @@ export class CandidateAssignCreateComponent implements OnInit, AfterViewChecked 
             }))
             this.typesSelected.push(questionTypeId)
         }
+        this.onRefresh()
     }
 
     convertStartDate(event: any, index: number) {
@@ -148,6 +152,34 @@ export class CandidateAssignCreateComponent implements OnInit, AfterViewChecked 
             endTime: convertUTCToLocalDateTime(event)
         })
     }
+
+    onRefresh() {
+        const data = this.candidateAssignsDto.getRawValue()
+        if (data.packageId != 0 && data.topicId != 0 && data.packageId != null
+            && data.topicId != null && this.typesSelected.length != 0) {
+            if (this.typesSelected.length > 1) {
+                const filter = {
+                    packageId: data.packageId,
+                    topicId: data.topicId
+                }
+                this.questionService.getQuestionsFilteredAllTypes(filter).subscribe(result => {
+                    this.questions = result
+                })
+            }
+
+            if (this.typesSelected.length == 1) {
+                const filter = {
+                    packageId: data.packageId,
+                    topicId: data.topicId,
+                    questionTypeId: data.questionTypeId
+                }
+                this.questionService.getQuestionsFilteredByType(filter).subscribe(result => {
+                    this.questions = result
+                })
+            }
+        }
+    }
+
 
 
 

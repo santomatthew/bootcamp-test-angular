@@ -6,6 +6,7 @@ import { FileTypeGetResDto } from "@dto/filetype/file-type-get.res.dto";
 import { CandidateInformationService } from "@services/candidateinformation.service";
 import { FileService } from "@services/file.service";
 import { FileTypeService } from "@services/filetype.service";
+import { FileUpload } from "primeng/fileupload";
 
 @Component({
     selector: 'candidate-information',
@@ -43,15 +44,40 @@ export class CandidateInformationCreateComponent implements OnInit {
         return this.candidateInformationsReqDto.get('data') as FormArray
     }
 
-    fileUpload(event: any, id: number, index: number) {
-        this.fileService.fileUpload(event, (ext, fileName) => {
-            this.candidateInformations.at(index).setValue({
-                fileTypeId: id,
-                ext,
-                fileName
+    fileUpload(event: any, fileUpload: FileUpload, index: number, id: number) {
+        const toBase64 = (file: File) => new Promise<string>((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                if (typeof reader.result === "string") resolve(reader.result)
+            };
+            reader.onerror = error => reject(error);
+        });
+
+        for (let file of event.files) {
+            toBase64(file).then(result => {
+                const resultBase64 = result.substring(result.indexOf(",") + 1, result.length)
+                const resultExtension = file.name.substring(file.name.indexOf(".") + 1, file.name.length)
+
+                this.candidateInformations.at(index).patchValue({
+                    fileTypeId: id,
+                    ext: resultExtension,
+                    fileName: resultBase64
+                })
+                fileUpload.clear();
             })
-        })
+        }
     }
+
+    // fileUpload(event: any, id: number, index: number) {
+    //     this.fileService.fileUpload(event, (ext, fileName) => {
+    //         this.candidateInformations.at(index).setValue({
+    //             fileTypeId: id,
+    //             ext,
+    //             fileName
+    //         })
+    //     })
+    // }
 
     getFileTypes() {
         this.fileTypeService.getFileTypes().subscribe(result => {
